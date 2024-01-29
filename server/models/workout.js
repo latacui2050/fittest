@@ -31,6 +31,18 @@ const workoutSchema = new mongoose.Schema({
     ],
     required: true,
   },
+  workoutSet: {
+    type: Int,
+    required: true,
+  },
+  workoutRep: {
+    type: Int,
+    required: true,
+  },
+  workoutHour: {
+    type: Int,
+    required: true,
+  },
   url: {
     type: String,
   },

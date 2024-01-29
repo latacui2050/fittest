@@ -50,12 +50,15 @@ const resolvers = {
       return { token, user };
     },
     //this allows us to add a new workout
-    addWorkout: async (parent, { workoutTitle, workoutText, workoutType, url }, context) => {
+    addWorkout: async (parent, { workoutTitle, workoutText, workoutType, workoutSet, workoutRep, workoutHour, url }, context) => {
       if (context.user) {
         const workout = await Workout.create({
           workoutTitle,
           workoutText,
           workoutType,
+          workoutSet,
+          workoutRep,
+          workoutHour,
           url,
           userId: context.user._id,
         });
@@ -112,7 +115,7 @@ const resolvers = {
       throw AuthenticationError;
     },
     //This allows us to edit a workout
-    editWorkout: async (parent, { workoutId, workoutTitle, workoutText, workoutType, url }, context) => {
+    editWorkout: async (parent, { workoutId, workoutTitle, workoutText, workoutType, workoutSet, workoutRep, workoutHour, url }, context) => {
       if (context.user) {
         const workout = await Workout.findOneAndUpdate(
           { _id: workoutId },
@@ -120,6 +123,9 @@ const resolvers = {
             workoutTitle,
             workoutText,
             workoutType,
+            workoutSet,
+            workoutRep,
+            workoutHour,
             url,
           },
           { new: true }

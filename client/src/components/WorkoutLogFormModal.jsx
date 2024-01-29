@@ -8,6 +8,9 @@ const WorkoutLogFormModal = ({ show, onHide }) => {
   const [workoutType, setWorkoutType] = useState("");
   const [title, setTitle] = useState("");
   const [url, setUrl] = useState("");
+  const [workoutSet, setWorkoutSet] = useState("");
+  const [workoutRep, setWorkoutRep] = useState("");
+  const [workoutHour, setWorkoutHour] = useState("");
   const [notes, setNotes] = useState("");
 
   const [addWorkout, { error }] = useMutation(ADD_WORKOUT, {
@@ -23,6 +26,9 @@ const WorkoutLogFormModal = ({ show, onHide }) => {
         variables: {
           workoutType,
           workoutTitle: title,
+          workoutSet,
+          workoutRep,
+          workoutHour,
           url,
           workoutText: notes
         },
@@ -30,6 +36,9 @@ const WorkoutLogFormModal = ({ show, onHide }) => {
 
       setWorkoutType("");
       setTitle("");
+      setWorkoutSet("");
+      setWorkoutRep("");
+      setWorkoutHour("");
       setUrl("");
       setNotes("");
       onHide();
@@ -45,6 +54,18 @@ const WorkoutLogFormModal = ({ show, onHide }) => {
 
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
+  };
+
+  const handleWorkoutSetChange = (event) => {
+    setWorkoutSet(event.target.value);
+  };
+
+  const handleWorkoutRepChange = (event) => {
+    setWorkoutRep(event.target.value);
+  };
+
+  const handleWorkoutHourChange = (event) => {
+    setWorkoutHour(event.target.value);
   };
 
   const handleUrlChange = (event) => {
@@ -92,6 +113,33 @@ const WorkoutLogFormModal = ({ show, onHide }) => {
               type="text"
               value={title}
               onChange={handleTitleChange}
+            />
+          </Form.Group>
+
+          <Form.Group controlId="workoutSet">
+            <Form.Label>WorkoutSet</Form.Label>
+            <Form.Control
+              type="text"
+              value={workoutSet}
+              onChange={handleWorkoutSetChange}
+            />
+          </Form.Group>
+
+          <Form.Group controlId="workoutRep">
+            <Form.Label>WorkoutRep</Form.Label>
+            <Form.Control
+              type="text"
+              value={workoutRep}
+              onChange={handleWorkoutRepChange}
+            />
+          </Form.Group>
+
+          <Form.Group controlId="workoutHour">
+            <Form.Label>WorkoutHour</Form.Label>
+            <Form.Control
+              type="text"
+              value={workoutHour}
+              onChange={handleWorkoutHourChange}
             />
           </Form.Group>
 

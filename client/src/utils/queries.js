@@ -6,6 +6,9 @@ query Workout($workoutId: ID!) {
       workoutTitle
       workoutType
       workoutText
+      workoutSet
+      workoutRep
+      workoutHour
       url
       createdAt
       comments {
@@ -25,6 +28,9 @@ query Query($userId: ID!, $type: String) {
       workoutTitle
       workoutType
       workoutText
+      workoutSet
+      workoutRep
+      workoutHour
       _id
     }
   }
@@ -50,6 +56,9 @@ query Query {
         workoutTitle
         workoutText
         workoutType
+        workoutSet
+        workoutRep
+        workoutHour
         url
         createdAt
         comments {

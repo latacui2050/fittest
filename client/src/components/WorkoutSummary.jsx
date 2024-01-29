@@ -7,7 +7,7 @@ const style = {
 };
 
 //summary needs to include type, title, and notes
-function WorkoutSummary({ type, title, notes, _id }) {
+function WorkoutSummary({ type, title, set, rep, hour, notes, _id }) {
 
   // turn markdown in to plain text for summary and limit characters
   function plainText(text, maxLength = 100) {
@@ -22,6 +22,9 @@ function WorkoutSummary({ type, title, notes, _id }) {
         <Card.Title>{title}</Card.Title>
         <Card.Subtitle>{type}</Card.Subtitle>
         <Card.Text>{plainText(notes)}</Card.Text>  
+        <Card.Text>{plainText(set)}</Card.Text>  
+        <Card.Text>{plainText(rep)}</Card.Text>  
+        <Card.Text>{plainText(hour)}</Card.Text>  
       </Card.Body>
     </Card>
     </Link>

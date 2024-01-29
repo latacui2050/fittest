@@ -14,13 +14,17 @@ const profilePictureStyle = {
   borderRadius: "0.25in"
 };
 
-function Workout({ id, type, title, link, notes, comments }) {
+function Workout({ id, type, title, set, rep, hour, link, notes, comments }) {
   const [inEditMode, setEditMode] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
 
   // These variables are for when the user edits the workout, separate from the actual workout content
   const [editTitle, setEditTitle] = useState(title);
+
   const [editType, setEditType] = useState(type);
+  const [editSet, setEditSet] = useState(set);
+  const [editRep, setEditRep] = useState(rep);
+  const [editHour, setEditHour] = useState(hour); 
   const [editText, setEditText] = useState(notes);
   const [editLink, setEditLink] = useState(link); 
   const [removeWorkout, { error }] = useMutation(REMOVE_WORKOUT);
@@ -28,6 +32,9 @@ function Workout({ id, type, title, link, notes, comments }) {
 
   const titleInputField = useRef();
   const workoutTypeSelection = useRef();
+  const setInputField = useRef();
+  const repInputField = useRef();
+  const hourInputField = useRef();
   const textDiv = useRef();
 
   const markdownConverter = new showdown.Converter();
@@ -35,6 +42,10 @@ function Workout({ id, type, title, link, notes, comments }) {
   useEffect(() => {
     titleInputField.current.value = title;
     workoutTypeSelection.current.value = type;
+    setInputField.current.value = set;
+    repInputField.current.value = rep;
+    hourInputField.current.value = hour;
+
     textDiv.current.innerHTML = markdownConverter.makeHtml(notes);
   }, []);
 
@@ -52,6 +63,9 @@ function Workout({ id, type, title, link, notes, comments }) {
         { workoutId: id, 
         workoutTitle: editTitle, 
         workoutType: editType,
+        workoutSet: editSet, 
+        workoutRep: editRep,
+        workoutHour: editHour,
         workoutText: editText,
         url: editLink.text,
       },
@@ -64,10 +78,16 @@ function Workout({ id, type, title, link, notes, comments }) {
   function resetEdits() {
     setEditTitle(title);
     setEditType(type);
+    setEditSet(set);
+    setEditRep(rep);
+    setEditHour(hour);
     setEditText(notes);
     setEditLink(link);
     titleInputField.current.value = title;
     workoutTypeSelection.current.value = type;
+    setInputField.current.value = set;
+    repInputField.current.value = rep;
+    hourInputField.current.value = hour;
   }
 
   // ------ NOTE FOR BACKEND --------
@@ -154,7 +174,25 @@ function Workout({ id, type, title, link, notes, comments }) {
         <div className={`markdown-view py-3 ${inEditMode ? 'd-none' : ''}`} ref={textDiv}/>
         <div className={!inEditMode ? 'd-none' : ''}>
           <MarkdownEditor text={editText} setText={setEditText} />
-        </div>  
+        </div>
+
+        <h5>Set:</h5>
+        <div className={`markdown-view py-3 ${inEditMode ? 'd-none' : ''}`} ref={setInputField}/>
+        <div className={!inEditMode ? 'd-none' : ''}>
+          <MarkdownEditor text={editSet} setText={setEditSet} />
+        </div>
+
+        <h5>Rep:</h5>
+        <div className={`markdown-view py-3 ${inEditMode ? 'd-none' : ''}`} ref={repInputField}/>
+        <div className={!inEditMode ? 'd-none' : ''}>
+          <MarkdownEditor text={editRep} setText={setEditRep} />
+        </div>
+
+        <h5>Hour:</h5>
+        <div className={`markdown-view py-3 ${inEditMode ? 'd-none' : ''}`} ref={hourInputField}/>
+        <div className={!inEditMode ? 'd-none' : ''}>
+          <MarkdownEditor text={editHour} setText={setEditHour} />
+        </div>
       
         <WorkoutLink inEditMode={inEditMode} link={link} editLink={editLink} setEditLink={setEditLink}/>
 

@@ -29,17 +29,26 @@ export const ADD_WORKOUT = gql`
     $workoutTitle: String!
     $workoutText: String!
     $workoutType: String!
+    $workoutSet: Int!
+    $workoutRep: Int!
+    $workoutHour: Int!
     $url: String!
   ) {
     addWorkout(
       workoutTitle: $workoutTitle
       workoutText: $workoutText
       workoutType: $workoutType
+      workoutSet: $workoutSet
+      workoutRep: $workoutRep
+      workoutHour: $workoutHour
       url: $url
     ) {
       workoutTitle
       workoutText
       workoutType
+      workoutSet
+      workoutRep
+      workoutHour
       url
       createdAt
       _id
@@ -56,11 +65,14 @@ export const REMOVE_WORKOUT = gql`
 `;
 
 export const EDIT_WORKOUT = gql`
-mutation Mutation($workoutId: ID!, $workoutTitle: String!, $workoutText: String!, $workoutType: String!, $url: String!) {
+mutation Mutation($workoutId: ID!, $workoutTitle: String!, $workoutText: String!, $workoutType: String!, $workoutSet: Int!, $workoutRep: Int!, $workoutHour: Int!, $url: String!) {
   editWorkout(workoutId: $workoutId, workoutTitle: $workoutTitle, workoutText: $workoutText, workoutType: $workoutType, url: $url) {
     workoutText
     workoutTitle
     workoutType
+    workoutSet
+    workoutRep
+    workoutHour
     url
   }
 }

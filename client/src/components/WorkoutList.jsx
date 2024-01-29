@@ -39,6 +39,9 @@ function WorkoutList() {
                 type={workout.workoutType}
                 title={workout.workoutTitle}
                 notes={workout.workoutText}
+                set={workout.workoutSet}
+                rep={workout.workoutRep}
+                hour={workout.workoutHour}
               />
             ))
           )}
