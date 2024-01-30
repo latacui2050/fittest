@@ -14,9 +14,9 @@ type Workout {
   workoutTitle: String
   workoutText: String
   workoutType: String
-  workoutSet: Number
-  workoutRep: Number
-  workoutHour: Number
+  workoutSet: Int
+  workoutRep: Int
+  workoutHour: Int
   url: String
   createdAt: String
   comments: [Comment]
