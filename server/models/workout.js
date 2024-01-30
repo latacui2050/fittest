@@ -32,15 +32,15 @@ const workoutSchema = new mongoose.Schema({
     required: true,
   },
   workoutSet: {
-    type: Int,
+    type: Number,
     required: true,
   },
   workoutRep: {
-    type: Int,
+    type: Number,
     required: true,
   },
   workoutHour: {
-    type: Int,
+    type: Number,
     required: true,
   },
   url: {
