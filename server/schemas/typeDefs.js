@@ -50,13 +50,13 @@ type Auth {
   type Mutation {
     addUser(name: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addWorkout(workoutTitle: String!, workoutText: String!, workoutType: String!, workoutSet: Number!, workoutRep: Number!, workoutHour: Number!, url: String!): Workout
+    addWorkout(workoutTitle: String!, workoutText: String!, workoutType: String!, workoutSet: Int!, workoutRep: Int!, workoutHour: Int!, url: String!): Workout
     removeUser: User
     removeWorkout(workout: String!): User
     addComment(commentBody: String!, workoutId: ID!): Comment
     removeComment(commentId: ID!, workoutId: ID!): Workout
     addFriend(friendId: ID!): User
-    editWorkout(workoutId: ID!, workoutTitle: String, workoutText: String, workoutType: String, workoutSet: Number, workoutRep: Number, workoutHour: Number, url: String): Workout
+    editWorkout(workoutId: ID!, workoutTitle: String, workoutText: String, workoutType: String, workoutSet: Int, workoutRep: Int, workoutHour: Int, url: String): Workout
   }
 `;
 
