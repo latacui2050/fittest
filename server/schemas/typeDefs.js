@@ -17,7 +17,6 @@ type Workout {
   workoutSet: Number
   workoutRep: Number
   workoutHour: Number
-  // workoutSet: Number, workoutRep: Number, workoutHour: Number
   url: String
   createdAt: String
   comments: [Comment]
